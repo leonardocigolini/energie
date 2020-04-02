@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Video } from '../video';
 import { VideoService } from '../video.service';
+import { MenuGroup } from '../menu/menu-group';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,6 +10,7 @@ import { VideoService } from '../video.service';
 })
 export class DashboardComponent implements OnInit {
   videos : Video[] = [];
+  menus : MenuGroup[] = [];
   //dataOggi : string;
   currentVideo : Video;
 
@@ -18,6 +20,18 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.getVideos();
     //this.dataOggi = (new Date()).toLocaleDateString();
+
+       const mm1 = [['one',''],['two',''],['three','']];
+       const mm2 = [['uno',''],['due',''],['tre','']];
+       const mm3 = [['ein',''],['zwei',''],['drei','']];
+       const mm4 = [['um',''],['dois',''],['treis','']];
+
+       this.menus.push( new MenuGroup("CONTACT US", mm1));
+       this.menus.push( new MenuGroup("CUSTOMER SERVICE", mm2));
+       this.menus.push( new MenuGroup("CORPORATION", mm3));
+       this.menus.push( new MenuGroup("WHY CHOOSE US", mm4));
+
+       
   }
 
   videoWasSelected(video: Video): void {

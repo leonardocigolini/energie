@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { EmbedVideo } from 'ngx-embed-video';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { BottomSectionComponent } from './bottom-section/bottom-section.component';
+import { MenuVertComponent } from './menu/menu-vert/menu-vert.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { BottomSectionComponent } from './bottom-section/bottom-section.componen
     FillIfEmptyPipe,
     VideoSelectComponent,
     TopBarComponent,
-    BottomSectionComponent
+    BottomSectionComponent,
+    MenuVertComponent
   ],
   imports: [
     BrowserModule,
