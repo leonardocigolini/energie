@@ -1,0 +1,38 @@
+<app-top-bar></app-top-bar>
+<section class="section">
+    <div class="container">
+        <h1 class="title">INTERVISTE</h1>
+        <div class="columns is-1 is-multiline">
+            <div class="column is-one-fourth" *ngFor="let video of videos" >
+                <app-video-item [video]=video></app-video-item>        
+            </div>  
+        </div>
+    </div>
+</section>
+<section class="section">
+    <div class="container">
+        <h1 class="title">DIRETTE SOCIAL</h1>
+        <div class="columns is-1 is-multiline">
+            <div class="column is-one-fourth" *ngFor="let video of videos">
+                <app-video-item 
+                    [video]=video 
+                    (click)="videoWasSelected(video)"
+                    [isSelected]="isSelected(video)">
+                </app-video-item>
+                       
+            </div>  
+        </div>
+    </div>
+</section>
+<section class="section">
+    <div class="container">
+        <h1 class="title">Articoli</h1>
+        <div class="columns is-1 is-multiline">
+            <div class="column is-one-fourth" *ngFor="let video of videos" >
+                <app-video-item [video]=video ></app-video-item>        
+            </div>  
+        </div>
+    </div>
+</section>
+<app-bottom-section></app-bottom-section>
+

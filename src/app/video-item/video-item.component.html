@@ -1,0 +1,25 @@
+<div class="card ">
+    <div class="card-image">
+        <div [innerHtml]="iframe_html"></div>
+    </div>
+
+    <div class="card-content is-paddingless">
+        
+        <div class="content">
+            <p class="subtitle is-size-7 bottom-margin">{{ video.description | truncate:[40] }}</p>
+            <!-- <p class="subtitle is-size-7 has-text-grey-light">{{video.tags | fillIfEmpty:['#'] }}</p> -->
+            <p class="title is-size-5 has-text-white">{{ video.title | truncate:[30]}}</p>
+            <!-- <p class="subtitle is-size-7 has-text-white">{{video.subtitle | fillIfEmpty:['...'] }}</p> -->
+            <!-- <time class="is-size-7" datetime="2016-1-1">11:09 PM - 1 Jan 2016</time> -->
+        </div>
+        
+    </div>
+</div>
+
+
+
+
+<div class="content"></div>
+
+
+
