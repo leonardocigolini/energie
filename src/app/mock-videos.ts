@@ -1,6 +1,8 @@
 import { Video } from './video';
 
 export const VIDEOS: Video[] = createVideos();
+export const VIDEOS2: Video[] = createVideos2();
+
 
 /* var a = [
     new Video('2001 odissea nello spazio','','incredibile avventura spaziale'),
@@ -30,24 +32,36 @@ var b = [
 
 function createVideos() : Video[] {
     var r = [];
-    r.push( new Video('2001 odissea nello spazio','','incredibile avventura spaziale','#fantascienza','https://vimeo.com/399207656'));
-    r.push( new Video('2010 ultima odissea','','una altra incredibile avventura spaziale','','https://vimeo.com/191730738'));
+    r.push( new Video('Pier Mario Biava','','L\'universo è un sogno','','https://vimeo.com/403651476'));
+    r.push( new Video('Alessandra Perotti','','Presentazione','','https://vimeo.com/403406427'));
+    r.push( new Video('Richard Romagnoli','','Richard si presenta al pubblico','','https://vimeo.com/403401675'));
+    r.push( new Video('Richard Romagnoli','','Intervista Energie Magazine','','https://vimeo.com/400610348'));
 
-    r.push( new Video('PHYL percorso base','registrazione corso','asdf asdf asdf asdf','#phyl','https://vimeo.com/189642668'));
-    r.push( new Video('2001 odissea nello spazio','','incredibile avventura spaziale','#fantascienza','https://vimeo.com/399207656'));
-    r.push( new Video('2010 ultima odissea','','una altra incredibile avventura spaziale','','https://vimeo.com/191730738'));
 
-    r.push( new Video('PHYL percorso base','registrazione corso','asdf asdf asdf asdf','#phyl','https://vimeo.com/189642668'));
-    r.push( new Video('2001 odissea nello spazio','','incredibile avventura spaziale','#fantascienza','https://vimeo.com/399207656'));
-    r.push( new Video('2010 ultima odissea','','una altra incredibile avventura spaziale','','https://vimeo.com/191730738'));
 
-    r.push( new Video('PHYL percorso base','registrazione corso','asdf asdf asdf asdf','#phyl','https://vimeo.com/189642668'));
+ //   console.log('createVideos r.size '+ r.length);
+ //   for (let index = 0; index < r.length; index++) {
+ //       const element = r[index];
+ //       console.log( element.title);     
+ //   }
+    return r;
+}
 
-    console.log('createVideos r.size '+ r.length);
-    for (let index = 0; index < r.length; index++) {
-        const element = r[index];
-        console.log( element.title);
-        
-    }
+function createVideos2() : Video[] {
+    var r = [];
+   
+    r.push( new Video('EIFIS EDITORE','','Presentazione','','https://vimeo.com/403378040'));
+    r.push( new Video('Radhanath Swami','','Presentazione','','https://vimeo.com/403327063'));
+    r.push( new Video('Richard Romagnoli','','Un tè con l\'autore','','https://vimeo.com/404074665'));
+
+   
+
+
+
+ //   console.log('createVideos r.size '+ r.length);
+ //   for (let index = 0; index < r.length; index++) {
+ //       const element = r[index];
+ //       console.log( element.title);     
+ //   }
     return r;
 }

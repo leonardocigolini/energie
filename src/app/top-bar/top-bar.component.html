@@ -1,62 +1,78 @@
 <nav class="navbar has-shadow" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-      <a class="navbar-item padding4" href="https://bulma.io">
-        <img src="/assets/images/logo.jpg" width="112" height="56">
+      <a class="navbar-item padding4" href="https://www.eifis.it">
+        <img src="/assets/images/logo.jpg" width="145" height="56">
       </a>
 
-      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarMain">
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
       </a>
     </div>
 
-    <div id="navbarBasicExample" class="navbar-menu">
+    <div id="navbarMain" class="navbar-menu">
       <div class="navbar-start">
-        <a class="navbar-item">
-          Chi siamo
-        </a>
-
-        
+        <a class="navbar-item" (click)="doCmd.emit(1)">Chi siamo</a>
 
         <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">Categorie</a>
+          <div class="navbar-dropdown">
+            <a *ngFor="let title of titles; let i=index" class="navbar-item" href="#{{section_ids[i]}}">
+              {{title}}
+            </a>
+          </div>
+        </div>
+        
+        <a class="navbar-item" (click)="doCmd.emit(5)">Iscriviti</a>
+               
+<!--         <div  *ngFor="let menu of menus" class="navbar-item has-dropdown is-hoverable">
+            <app-menu-drop [menu]="menu" (doCmd)="doCmd.emit($event)" ></app-menu-drop>
+        </div> -->
+       
+        <!-- <div class="navbar-item has-dropdown is-hoverable">
           <a class="navbar-link">
             Categorie
           </a>
 
           <div class="navbar-dropdown">
-            <a class="navbar-item">
-              About
+            <a class="navbar-item" (click)="doCmd.emit(1)">
+              Chi siamo
             </a>
-            <a class="navbar-item">
+            <a class="navbar-item" (click)="doCmd.emit(2)">
               Jobs
             </a>
-            <a class="navbar-item">
-              Contact
+            <a class="navbar-item" (click)="doCmd.emit(3)">
+              Contatti
             </a>
+            <a class="navbar-item" (click)="doCmd.emit(4)">
+              Privacy
+            </a>
+
             <hr class="navbar-divider">
-            <a class="navbar-item">
+            <a class="navbar-item" (click)="doCmd.emit(5)">
               Report an issue
             </a>
           </div>
-          <a class="navbar-item">
-            Iscriviti
-          </a>
         </div>
+        <a class="navbar-item">
+            Iscriviti
+        </a>
+      -->  
       </div>
 
-      <div class="navbar-end">
+     <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
-            <a class="button is-primary">
+           <!--  <a class="button is-primary">
               <strong>Sign up</strong>
-            </a>
+            </a> -->
             <a class="button is-light">
               Log in
             </a>
           </div>
         </div>
       </div>
+
     </div>
   </nav>
-

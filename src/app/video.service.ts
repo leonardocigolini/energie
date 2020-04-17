@@ -4,28 +4,30 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
+import { environment } from './../environments/environment';
+
 import { Video } from './video';
-import { VIDEOS } from './mock-videos';
+import { VIDEOS, VIDEOS2 } from './mock-videos';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VideoService {
 
-  constructor() { }
+  videoUrl: string = environment.videoUrl;
+  //videoUrl: string = 'https://eifis.online/api/eshop/v1/get_videos';
+  //videoUrl: string = 'http://127.0.0.1:3001/api/eshop/v1/get_videos?t=1';
 
-   /** GET videos from the server */
+  constructor( private http: HttpClient) { }
 
-   getVideos(): Observable<Video[]> {
-     return of (VIDEOS);
+  /** GET videos from the server */
+  getVideos(t: number): Observable<any[]> {
+    return this.http.get<any[]>( this.videoUrl+'?t='+t);
    }
-   //getVideos (): Observable<Video[]> {
-    //return this.http.get<Hero[]>(this.videosUrl)
-    //  .pipe(
-    //    tap(_ => this.log('fetched videos')),
-    //    catchError(this.handleError('getHeroes', []))
-    //  );
-  //}
 
+  /** GET videos from mock */ 
+  // getVideos2(): Observable<Video[]> {
+  //  return of (VIDEOS2);
+  //}
 
 }

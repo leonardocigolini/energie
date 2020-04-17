@@ -2,11 +2,12 @@
   <div class="content">  
     <div class="columns is-1">
       <div *ngFor="let menu of menus" class="column">
-          <app-menu-vert [menu]="menu"></app-menu-vert>
+          <app-menu-vert [menu]="menu" (doCmd)="doCmd.emit($event)" ></app-menu-vert>
       </div>
     </div>
   </div>
   <p>
-        <strong>Powered by</strong><a href="https://www.eifis.it">EIFIS Editore</a>.
+        <strong>Powered by</strong><a href="https://www.eifis.it"> EIFIS Editore</a>.
   </p>
+  <p>MADE WITH <span class="icon"><i class="fas fa-heart"></i></span>IN ITALY</p>
 </footer>

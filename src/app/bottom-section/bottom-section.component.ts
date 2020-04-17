@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MenuGroup } from '../menu/menu-group';
 
 
@@ -10,8 +10,12 @@ import { MenuGroup } from '../menu/menu-group';
 export class BottomSectionComponent implements OnInit {
   
   @Input() menus: MenuGroup[];
+  @Output() doCmd: EventEmitter<number>;
 
-  constructor() { }
+
+  constructor() {    
+    this.doCmd = new EventEmitter();
+  }
 
   ngOnInit(): void {  }
 

@@ -1,5 +1,4 @@
-import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angular/core';
-import { VideoService } from '../video.service';
+import { Component, OnInit, Input } from '@angular/core';
 import { Video } from '../video';
 import { EmbedVideoService } from 'ngx-embed-video';
 //based on https://github.com/SamirHodzic/ngx-embed-video
@@ -21,7 +20,7 @@ export class VideoItemComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.loadPicture();  
+    this.loadPicture(); 
   }
 
   ngOnChanges() {
@@ -38,9 +37,8 @@ export class VideoItemComponent implements OnInit {
   }
 
   loadPicture() {
-    this.embedService.embed_image( this.video.url, { image: 'thumbnail_medium' }
+    this.embedService.embed_image( this.video.url, { image: 'thumbnail_large' }
     ).then(res => { this.iframe_html = res.html;} );
   }
 
-  
 }

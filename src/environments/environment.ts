@@ -3,7 +3,17 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  videoUrl: 'https://eifis.online/api/eshop/v1/get_videos',
+  userUrl: 'http://',
+  authUrl: 'http://gma.eifis.online/authenticate',
+  getUrl: 'http://gma.eifis.online',
+  clientId: 'json@local.gma',
+  clientSecret: 'GmaBridge@Eifis2019!',
+  tokContentType: 'application/json'
+
+
+
 };
 
 /*

@@ -1,9 +1,9 @@
 export class MenuItem {
-    desc: string;
-    url: string;
-
-    constructor( d: string, u: string) {
-        this.desc = d;
-        this.url = u;
-    }
+ 
+    constructor( 
+        public desc: string, 
+        public url: string,
+        public cmd: number
+    ) {}
+    
 }

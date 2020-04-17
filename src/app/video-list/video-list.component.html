@@ -1,0 +1,10 @@
+<h1 class="title">{{title}}</h1>
+<div class="columns is-1 is-multiline">
+    <div class="column is-one-quarter" *ngFor="let video of videos" >
+        <app-video-item 
+            [video]=video
+            (click)="videoWasSelected(video)"
+            [isSelected]="isSelected(video)">
+        </app-video-item>        
+    </div>  
+</div>

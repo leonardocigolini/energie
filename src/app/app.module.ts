@@ -13,6 +13,9 @@ import { EmbedVideo } from 'ngx-embed-video';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { BottomSectionComponent } from './bottom-section/bottom-section.component';
 import { MenuVertComponent } from './menu/menu-vert/menu-vert.component';
+import { MenuDropComponent } from './menu/menu-drop/menu-drop.component';
+import { VideoListComponent } from './video-list/video-list.component';
+import { PageModule } from './page/page.module'
 
 @NgModule({
   declarations: [
@@ -24,12 +27,15 @@ import { MenuVertComponent } from './menu/menu-vert/menu-vert.component';
     VideoSelectComponent,
     TopBarComponent,
     BottomSectionComponent,
-    MenuVertComponent
+    MenuVertComponent,
+    MenuDropComponent,
+    VideoListComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    PageModule,
     EmbedVideo.forRoot()
   ],
   providers: [],

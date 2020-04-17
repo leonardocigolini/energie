@@ -1,38 +1,30 @@
-<app-top-bar></app-top-bar>
-<section class="section">
+<app-top-bar [menus]=menus2 [titles]=titles [section_ids]="section_id" (doCmd)="execCmd($event)"></app-top-bar>
+<section *ngIf="showJobs" class="section">
     <div class="container">
-        <h1 class="title">INTERVISTE</h1>
-        <div class="columns is-1 is-multiline">
-            <div class="column is-one-fourth" *ngFor="let video of videos" >
-                <app-video-item [video]=video></app-video-item>        
-            </div>  
-        </div>
+        <h1 class="title">JOB</h1>
     </div>
 </section>
-<section class="section">
+<section *ngIf="showAbout" class="section">
     <div class="container">
-        <h1 class="title">DIRETTE SOCIAL</h1>
-        <div class="columns is-1 is-multiline">
-            <div class="column is-one-fourth" *ngFor="let video of videos">
-                <app-video-item 
-                    [video]=video 
-                    (click)="videoWasSelected(video)"
-                    [isSelected]="isSelected(video)">
-                </app-video-item>
-                       
-            </div>  
-        </div>
+        <h1 class="title">About</h1>
     </div>
 </section>
-<section class="section">
+<section *ngIf="showContact" class="section">
     <div class="container">
-        <h1 class="title">Articoli</h1>
-        <div class="columns is-1 is-multiline">
-            <div class="column is-one-fourth" *ngFor="let video of videos" >
-                <app-video-item [video]=video ></app-video-item>        
-            </div>  
-        </div>
+        <h1 class="title">Contact</h1>
     </div>
 </section>
-<app-bottom-section [menus]=menus></app-bottom-section>
+<ng-container *ngFor="let title of titles; let i=index">
+    <section *ngIf="avideos[i] && avideos[i].length > 0" class="section" id={{section_id[i]}}>
+        <div class="container">
+            <app-video-list 
+                [title]="title" 
+                [videos]="avideos[i]">
+            </app-video-list>
+        </div>
+    </section>
+</ng-container>
+
+
+<app-bottom-section [menus]=menus (doCmd)="execCmd($event)"></app-bottom-section>
 

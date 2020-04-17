@@ -1,0 +1,4 @@
+<a class="navbar-link"> {{menu.title}}</a>
+<div class="navbar-dropdown">
+    <a class="navbar-item" *ngFor="let item of menu.items" (click)="doCmd.emit(item.cmd)" >{{item.desc}}  </a>
+</div>

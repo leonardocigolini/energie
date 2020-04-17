@@ -1,4 +1,4 @@
 <h4>{{menu.title}}</h4>
 <ul>
-    <li *ngFor="let item of menu.items">{{item.desc}}</li>
+    <li *ngFor="let item of menu.items" (click)="doCmd.emit(item.cmd)" >{{item.desc}}  </li>
 </ul>

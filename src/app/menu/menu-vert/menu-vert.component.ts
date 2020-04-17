@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 import { MenuGroup } from '../menu-group';
 
 @Component({
@@ -8,8 +8,13 @@ import { MenuGroup } from '../menu-group';
 })
 export class MenuVertComponent implements OnInit {
   @Input() menu: MenuGroup;
+  @Output() doCmd: EventEmitter<number>;
 
-  constructor() {}
+
+  constructor() {    
+    this.doCmd = new EventEmitter();
+  }
+
 
   ngOnInit(): void {}
 

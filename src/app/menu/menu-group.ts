@@ -8,7 +8,7 @@ export class MenuGroup {
         this.title = t;
         this.items = [];
         mm.forEach( (e) => { 
-            this.items.push( new MenuItem(e[0], e[1]))
+            this.items.push( new MenuItem(e[0], e[1], e[2]))
         })
     }
 }

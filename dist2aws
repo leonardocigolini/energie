@@ -1,0 +1,13 @@
+ng build --prod --base-href /
+
+cd dist/energie
+for nf in $(ls *.js *.css index.html)
+do
+  aws2 s3 cp $nf s3://energiemagazine20/$nf
+done
+
+cd assets/images
+for nf in $(ls *.jpg)
+do
+  aws2 s3 cp $nf s3://energiemagazine20/assets/images/$nf
+done

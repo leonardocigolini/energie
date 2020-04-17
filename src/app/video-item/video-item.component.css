@@ -1,6 +1,12 @@
 p.bottom-margin {
-    margin-bottom: 20px;
+    margin-bottom: 24px;
 }
+
+div.card-content {
+    padding: 6px;
+}
+
+
 
 iframe {
     width: 100%;
