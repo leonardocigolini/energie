@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input,Output, EventEmitter } from '@angular/core';
 import { Video } from '../video';
 
 @Component({
@@ -10,15 +10,26 @@ export class VideoListComponent implements OnInit {
 
   @Input() title: String;
   @Input() videos: Video[];
-
+  @Input() userLogged: boolean;
+  @Output() doCmd: EventEmitter<number>;
+ 
   currentVideo : Video;
-  constructor() { }
+
+  constructor() {
+    this.doCmd = new EventEmitter();
+  }
+
 
   ngOnInit(): void {
   }
 
   videoWasSelected(video: Video): void {
-    this.currentVideo = video;
+    if (this.userLogged) {
+      this.currentVideo = video;
+      this.doCmd.emit(80);
+    } else {
+      this.doCmd.emit(81);
+    }
    // console.log('videoWasSelected');
    // this.videos.forEach( (video) => { if video != cvideo { video.loadPicture() }})
   }

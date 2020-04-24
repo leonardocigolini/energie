@@ -1,85 +1,73 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Output,EventEmitter } from '@angular/core';
 import {
   HttpClient,
   HttpRequest,
-  HttpHeaders
+  HttpHeaders,
+  HttpParams
 } from '@angular/common/http';
 import { environment } from './../environments/environment';
+import { EmailValidator } from '@angular/forms';
 
+export type CallbackFunction = (...args: any[]) => void;
+
+export interface ApiAnswer {
+  notice: string,
+  next_state: number,
+  user_id?: number
+};
+
+export interface ApiRequest {
+  email: string,
+  password: string
+ 
+};
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
+
+  tok: string = '';
   data: Object;
-  loading: boolean;
+  data1: ApiRequest;
+  data2: ApiAnswer;
+  loading: boolean; 
 
-  constructor(private http: HttpClient) { }
+ 
+  @Output() doCmd: EventEmitter<number>;
 
-  getToken(email : string, password : string) : void {
-    this.http
-      .post(
-        environment.authUrl,
-        JSON.stringify({
-          email: environment.clientId,
-          password: environment.clientSecret
-        })
-      )
-      .subscribe(data => {
-        this.data = data;
-        this.loading = false;
-      });
-  }
+  constructor(private http: HttpClient) {
+    this.doCmd = new EventEmitter();
+   };
 
-  makeHeaders(): void {
-    const headers: HttpHeaders = new HttpHeaders({
-      'X-API-TOKEN': 'ng-book'
-    });
+  appoCompleteAuth(ris: ApiAnswer) : void {
+    if (ris.user_id)  
+      console.log(ris.notice + ris.user_id)
+    else
+      console.log(ris.notice);
+  };
 
-    const req = new HttpRequest(
-      'GET',
-      'https://jsonplaceholder.typicode.com/posts/1',
-      {
-        headers: headers
-      }
-    );
-    this.http.request(req).subscribe(data => {
-      this.data = data['body'];
-    });
-  }
-    
-
-
-  makePost(): void {
-    this.loading = true;
-    this.http
-      .post(
-        'https://jsonplaceholder.typicode.com/posts',
-        JSON.stringify({
-          body: 'bar',
-          title: 'foo',
-          userId: 1
-        })
-      )
-      .subscribe(data => {
-        this.data = data;
-        this.loading = false;
-      });
-  }
-
-  makeDelete(): void {
-    this.loading = true;
-    this.http
-      .delete('https://jsonplaceholder.typicode.com/posts/1')
-      .subscribe(data => {
-        this.data = data;
-        this.loading = false;
-      });
-  }
-
-
-
+ userAuthenticate(user: string, password: string, done: CallbackFunction) : void {
+    console.log('user authenticate '+user+ ' '+password);
+    this.data1 = { email: user, password: password};
    
+  //  this.appoAuthenticate()
+  //  this.getToken('','', this.appoAuthenticate);
+    this.getToken2(user,password, done)
+  }
 
+  getToken2(email : string, password : string, done : CallbackFunction) : void {
+
+    const pars: HttpParams = new HttpParams().set('m', '1').set('n', email).set('p',password);
+
+    this.http.get<any>(environment.userUrl,{params: pars}).subscribe({
+      next: (data : ApiAnswer) => { this.data2 = data; console.log('next')},
+      error: error => console.log(error),
+      complete: () => done(this.data2)
+    });
+
+  }
+
+  
 }

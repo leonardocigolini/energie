@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,7 +16,9 @@ import { BottomSectionComponent } from './bottom-section/bottom-section.componen
 import { MenuVertComponent } from './menu/menu-vert/menu-vert.component';
 import { MenuDropComponent } from './menu/menu-drop/menu-drop.component';
 import { VideoListComponent } from './video-list/video-list.component';
-import { PageModule } from './page/page.module'
+import { PageModule } from './page/page.module';
+import { LoginFormComponent } from './login-form/login-form.component';
+import { MessageFormComponent } from './message-form/message-form.component'
 
 @NgModule({
   declarations: [
@@ -29,12 +32,15 @@ import { PageModule } from './page/page.module'
     BottomSectionComponent,
     MenuVertComponent,
     MenuDropComponent,
-    VideoListComponent
+    VideoListComponent,
+    LoginFormComponent,
+    MessageFormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
     PageModule,
     EmbedVideo.forRoot()
   ],

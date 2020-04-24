@@ -25,6 +25,7 @@
         </div>
         
         <a class="navbar-item" (click)="doCmd.emit(5)">Iscriviti</a>
+        <div class="navbar-item">{{user_name}}</div>
                
 <!--         <div  *ngFor="let menu of menus" class="navbar-item has-dropdown is-hoverable">
             <app-menu-drop [menu]="menu" (doCmd)="doCmd.emit($event)" ></app-menu-drop>
@@ -64,15 +65,9 @@
      <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
-           <!--  <a class="button is-primary">
-              <strong>Sign up</strong>
-            </a> -->
-            <a class="button is-light">
-              Log in
-            </a>
+            <a class="button is-light" (click)="doCmd.emit(99)">Log in</a>
           </div>
         </div>
-      </div>
-
+     </div>
     </div>
   </nav>

@@ -3,6 +3,8 @@ import { Video } from '../video';
 import { VideoService } from '../video.service';
 import { MenuGroup } from '../menu/menu-group';
 import { Router} from '@angular/router';
+import { UserService } from '../user.service';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -10,13 +12,12 @@ import { Router} from '@angular/router';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  avideos : Video[][] = [];
-/*   videos : Video[] = [];
-  videos2 : Video[] = [];
-  videos3 : Video[] = [];
-  videos4 : Video[] = [];
-  videos5 : Video[] = []; */
 
+  loginFormIsActive: boolean = false;
+  messageFormIsActive: boolean = false;
+  message : string;
+
+  avideos : Video[][] = [];
 
 
   menus : MenuGroup[] = [];
@@ -46,15 +47,13 @@ export class DashboardComponent implements OnInit {
   ];
 
 
-  //dataOggi : string;
- 
-
-  showJobs: boolean = false;
-  showAbout: boolean = false;
-  showContact: boolean = false;
+  loginState: string = '';
+  userLogged: boolean = false;
+  userName: string = '';
 
   constructor(
     private videoService: VideoService, 
+    private userService: UserService,
     private router: Router) { }
 
   ngOnInit(): void {
@@ -113,94 +112,58 @@ export class DashboardComponent implements OnInit {
     this.appoGetVideos(1,9);
   }
 
-  /* getVideos1(): void {
-    this.videoService.getVideos(1).subscribe(
-      videos => { 
-        console.log(videos);
-        videos.forEach( (video) => {  
-         this.videos.push( new Video(video.title, '', video.description, '', video.link));
-        });
-
-        this.videoService.getVideos(2).subscribe(
-          videos => { 
-            console.log(videos);
   
-            videos.forEach( (video) => {
-             this.videos2.push( new Video(video.title, '', video.description, '', video.link));
-            });
-
-            this.videoService.getVideos(3).subscribe(
-              videos => { 
-                console.log(videos);
-    
-                videos.forEach( (video) => {
-                 this.videos3.push( new Video(video.title, '', video.description, '', video.link));
-                });
-
-
-              });
-          });
-      }); */
-        
-        
-   /*      this.videoService.getVideos4.subscribe(
-            videos => { 
-              console.log(videos);
-
-              videos.forEach( (video) => {
-               this.videos4.push( new Video(video.title, '', video.description, '', video.link));
-              });
-            });
-
-        this.videoService.getVideos5.subscribe(
-              videos => { 
-                console.log(videos);
-
-                videos.forEach( (video) => {
-                 this.videos5.push( new Video(video.title, '', video.description, '', video.link));
-                });
-              });
- 
-    //this.videoService.getVideos2().subscribe(videos => this.videos2 = videos.slice(0,5));
-
-  }
-  */
-
-
   execCmd(cmd: number) {
     console.log("execmd "+cmd);
     switch(cmd) {
       case 1: { // chi siamo
         this.router.navigate(['/chisiamo']);
         break;
-
       }
       case 3: { // contatti
         this.router.navigate(['/contatti']);
-
         break;
-
       }
       case 4: { // privacy
         this.router.navigate(['/privacy']);
-
-        break;
-
-      }
-      case 51: {
-        this.showAbout = !this.showAbout;
-        break;
-      }
-      case 52: {
-        this.showJobs = !this.showJobs;
-        break;
-      }
-      case 53: {
-        this.showContact = !this.showContact;
         break;
       }
 
-        
+      case 80: {  // video selected
+        break;
+      }
+
+      case 81: { // cannot select video because user not logged
+        this.message = "per visualizzare i video devi prima effetturare il login";
+        this.messageFormIsActive = true;
+        break;
+      }
+     
+      case 96: {  // close message form
+        this.messageFormIsActive = false;
+        break;
+      }
+      case 99: {  // open login form
+        this.loginFormIsActive = true;
+        break;
+      }
+      case 98: {  // close login form
+        this.loginFormIsActive = false;
+        console.log(this.loginFormIsActive);
+        if (this.userService.data2.user_id) {
+          this.loginState = this.userService.data2.notice;
+          this.userName = this.userService.data1.email;
+        //  this.showLogin = true;
+          this.userLogged = true;
+
+          this.message = "utente collegato";
+          this.messageFormIsActive = true;
+        } else {
+          this.message = "credenziali errate";
+          this.messageFormIsActive = true;
+        }
+        break;     
+      }     
     }
   }
 

@@ -1,0 +1,7 @@
+{
+    "/authenticate/*": {
+        "target": "http://gma.eifis.online",
+        "secure": false,
+        "logLevel": "debug"
+    }
+}

@@ -12,6 +12,7 @@ export class TopBarComponent implements OnInit {
   @Output() doCmd: EventEmitter<number>;
   @Input() menus: MenuGroup[];
   @Input() titles: String[];
+  @Input() user_name: string;
   @Input() section_ids: String[];
 
 

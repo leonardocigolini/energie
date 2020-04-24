@@ -1,25 +1,17 @@
-<app-top-bar [menus]=menus2 [titles]=titles [section_ids]="section_id" (doCmd)="execCmd($event)"></app-top-bar>
-<section *ngIf="showJobs" class="section">
-    <div class="container">
-        <h1 class="title">JOB</h1>
-    </div>
-</section>
-<section *ngIf="showAbout" class="section">
-    <div class="container">
-        <h1 class="title">About</h1>
-    </div>
-</section>
-<section *ngIf="showContact" class="section">
-    <div class="container">
-        <h1 class="title">Contact</h1>
-    </div>
-</section>
+<app-top-bar [menus]=menus2 [titles]=titles [user_name]="userName" [section_ids]="section_id" (doCmd)="execCmd($event)"></app-top-bar>
+
+<app-login-form [isActive]="loginFormIsActive" (doCmd)="execCmd($event)"></app-login-form>
+
+<app-message-form [isActive]="messageFormIsActive" [message]="message" (doCmd)="execCmd($event)"></app-message-form>
+
 <ng-container *ngFor="let title of titles; let i=index">
     <section *ngIf="avideos[i] && avideos[i].length > 0" class="section" id={{section_id[i]}}>
         <div class="container">
             <app-video-list 
                 [title]="title" 
-                [videos]="avideos[i]">
+                [videos]="avideos[i]"
+                [userLogged]="userLogged"
+                (doCmd)="execCmd($event)">
             </app-video-list>
         </div>
     </section>

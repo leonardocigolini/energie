@@ -1,0 +1,36 @@
+<div class="modal" [class.is-active]="isActive">
+    <div class="modal-background" (click)="doCmd.emit(98)"></div>
+    <div class="modal-content">
+        <div class="box">
+
+            <form #f="ngForm" (ngSubmit)="onSubmit(f.value)">
+                <p>NOTA {{notice}}</p>
+
+                <div class="field">
+                    <label for="userInput" class="label">User</label>
+                    <div class="control">
+                        <input id="userInput" class="input" type="text" placeholder="user name" name="user" ngModel />
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="pwdInput" class="label">Password</label>
+                    <div class="control">
+                        <input id="pwdInput" class="input" type="text" placeholder="password" name="password" ngModel />
+                    </div>
+                </div>
+                <div class="field is-grouped">
+                    <div class="control">
+                    <button type="submit" class="button is-link">Submit</button>
+                    </div>
+                    <div class="control">
+                    <button class="button is-link is-light" (click)="doCmd.emit(98)">Cancel</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+      
+      
+    </div>
+    <button class="modal-close is-large" aria-label="close" (click)="doCmd.emit(98)"></button>
+  </div>
