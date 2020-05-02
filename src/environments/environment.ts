@@ -6,6 +6,9 @@ export const environment = {
   production: false,
   videoUrl: 'https://eifis.online/api/eshop/v1/get_videos',
   userUrl:  'https://eifis.online/api/eshop/v1/check_user'
+
+//  homeUrl: 'http://eifis.it',
+//  homeLogo: '/assets/images/logo.jpg'
   
 
 

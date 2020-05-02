@@ -5,6 +5,7 @@ import { PageModule } from './page/page.module';
 import { ChiSiamoComponent } from './page/chi-siamo/chi-siamo.component';
 import { ContattiComponent} from './page/contatti/contatti.component';
 import { PrivacyComponent} from './page/privacy/privacy.component';
+import { ArticleListComponent} from './article/article-list/article-list.component';
 
 
 
@@ -13,7 +14,8 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'privacy', component: PrivacyComponent },
   { path: 'chisiamo', component: ChiSiamoComponent },
-  { path: 'contatti', component: ContattiComponent }
+  { path: 'contatti', component: ContattiComponent },
+  { path: 'articoli', component: ArticleListComponent}
 ];
 
 @NgModule({

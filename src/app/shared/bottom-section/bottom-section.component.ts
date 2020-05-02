@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { MenuGroup } from '../menu/menu-group';
+import { MenuGroup } from '../../menu/menu-group';
 
 
 @Component({

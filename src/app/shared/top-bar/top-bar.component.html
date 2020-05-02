@@ -1,30 +1,35 @@
-<nav class="navbar has-shadow" role="navigation" aria-label="main navigation">
+<nav class="navbar has-shadow is-fixed-top" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-      <a class="navbar-item padding4" href="https://www.eifis.it">
-        <img src="/assets/images/logo.jpg" width="145" height="56">
+      <a class="navbar-item padding4" href="{{homeUrl}}">
+        <img src="{{homeLogo}}" width="145" height="56">
       </a>
 
-      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarMain">
+      
+      <a role="button" class="navbar-burger burger" [class.is-active]="isActive" aria-label="menu" aria-expanded="false" data-target="navbarMain" (click)="showNavBar()">
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
       </a>
     </div>
 
-    <div id="navbarMain" class="navbar-menu">
+    <div  class="navbar-menu" [class.is-active]="isActive">
       <div class="navbar-start">
-        <a class="navbar-item" (click)="doCmd.emit(1)">Chi siamo</a>
+        <a *ngIf="mode=='video'" class="navbar-item" (click)="doCmd.emit(1)">Chi siamo</a>
 
-        <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link">Categorie</a>
+        <div *ngIf="mode=='video'" class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">Video</a>
           <div class="navbar-dropdown">
             <a *ngFor="let title of titles; let i=index" class="navbar-item" href="#{{section_ids[i]}}">
               {{title}}
             </a>
           </div>
         </div>
+
+        <a *ngIf="mode=='video'" class="navbar-item" (click)="doCmd.emit(5)">Articoli</a>
+
+        <a *ngIf="mode=='other'" class="navbar-item"  (click)="goBack()" >Video</a>
         
-        <a class="navbar-item" (click)="doCmd.emit(5)">Iscriviti</a>
+        <a *ngIf="mode != 'other' and user_name==''" class="navbar-item" (click)="doCmd.emit(95)">Iscriviti</a>
         <div class="navbar-item">{{user_name}}</div>
                
 <!--         <div  *ngFor="let menu of menus" class="navbar-item has-dropdown is-hoverable">
@@ -61,13 +66,18 @@
         </a>
       -->  
       </div>
-
-     <div class="navbar-end">
-        <div class="navbar-item">
+      <div *ngIf="mode != 'other'" class="navbar-end">
+        <div *ngIf="user_name != ''" class="navbar-item">
           <div class="buttons">
-            <a class="button is-light" (click)="doCmd.emit(99)">Log in</a>
+            <a class="button is-light" (click)="doCmd.emit(97)">Log Out</a>
           </div>
         </div>
-     </div>
+        <div *ngIf="user_name == ''" class="navbar-item">
+          <div class="buttons">
+            <a class="button is-light" (click)="doCmd.emit(99)">Log In</a>
+          </div>
+        </div>
+      </div>
+
     </div>
   </nav>

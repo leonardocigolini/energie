@@ -23,6 +23,10 @@ export class VideoListComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  gotoStart(){
+    this.doCmd.emit(10)
+  }
+
   videoWasSelected(video: Video): void {
     if (this.userLogged) {
       this.currentVideo = video;

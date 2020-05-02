@@ -1,0 +1,7 @@
+cd dist/energie/assets/images
+for nf in $(ls *.jpg *.png)
+do
+  aws2 s3 cp $nf s3://energiemagazine20/assets/images/$nf
+done
+
+cd ../../../..

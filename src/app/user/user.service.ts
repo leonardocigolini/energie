@@ -5,7 +5,7 @@ import {
   HttpHeaders,
   HttpParams
 } from '@angular/common/http';
-import { environment } from './../environments/environment';
+import { environment } from '../../environments/environment';
 import { EmailValidator } from '@angular/forms';
 
 export type CallbackFunction = (...args: any[]) => void;
@@ -33,6 +33,7 @@ export class UserService {
   data1: ApiRequest;
   data2: ApiAnswer;
   loading: boolean; 
+  isUserLogged: boolean = false;
 
  
   @Output() doCmd: EventEmitter<number>;
@@ -41,6 +42,8 @@ export class UserService {
     this.doCmd = new EventEmitter();
    };
 
+  
+
   appoCompleteAuth(ris: ApiAnswer) : void {
     if (ris.user_id)  
       console.log(ris.notice + ris.user_id)
@@ -48,18 +51,32 @@ export class UserService {
       console.log(ris.notice);
   };
 
+  logout() : void {
+    this.data1 = { email: '', password: ''};
+    this.data2.user_id = 0;
+    this.isUserLogged = false;
+
+  };
+
+  userName() : string {
+    return this.isUserLogged ? this.data1.email : ''
+  }
+
  userAuthenticate(user: string, password: string, done: CallbackFunction) : void {
     console.log('user authenticate '+user+ ' '+password);
     this.data1 = { email: user, password: password};
-   
-  //  this.appoAuthenticate()
-  //  this.getToken('','', this.appoAuthenticate);
-    this.getToken2(user,password, done)
+    this.getUser(user,password, '1', done)
   }
 
-  getToken2(email : string, password : string, done : CallbackFunction) : void {
+  userSignin(user: string, done: CallbackFunction) : void {
+    console.log('user signin '+user);
+    this.data1 = { email: user, password: ''};
+    this.getUser(user, '', '2', done)
+  }
 
-    const pars: HttpParams = new HttpParams().set('m', '1').set('n', email).set('p',password);
+  getUser(email : string, password : string, mode: string, done : CallbackFunction) : void {
+
+    const pars: HttpParams = new HttpParams().set('m', mode).set('n', email).set('p',password);
 
     this.http.get<any>(environment.userUrl,{params: pars}).subscribe({
       next: (data : ApiAnswer) => { this.data2 = data; console.log('next')},

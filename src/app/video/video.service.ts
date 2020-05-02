@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
-import { environment } from './../environments/environment';
+import { environment } from '../../environments/environment';
 
 import { Video } from './video';
 import { VIDEOS, VIDEOS2 } from './mock-videos';

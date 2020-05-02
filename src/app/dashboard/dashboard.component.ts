@@ -1,9 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Video } from '../video';
-import { VideoService } from '../video.service';
+import { Video } from '../video/video';
+import { VideoService } from '../video/video.service';
 import { MenuGroup } from '../menu/menu-group';
 import { Router} from '@angular/router';
-import { UserService } from '../user.service';
+import { UserService } from '../user/user.service';
 
 
 @Component({
@@ -13,15 +13,17 @@ import { UserService } from '../user.service';
 })
 export class DashboardComponent implements OnInit {
 
+  // login form
   loginFormIsActive: boolean = false;
+  loginMode: string = '';
+  loginFormTitle: string = '';
   messageFormIsActive: boolean = false;
   message : string;
 
+  topBarMode = 'video';
+
+  // video
   avideos : Video[][] = [];
-
-
-  menus : MenuGroup[] = [];
-  menus2 : MenuGroup[] = [];
   titles : string[] = [
     "Interviste",
     "Presentazione Libri",
@@ -46,43 +48,44 @@ export class DashboardComponent implements OnInit {
     "VidPHYL"
   ];
 
+  // menu
+  menus : MenuGroup[] = [];
+  menus2 : MenuGroup[] = [];
+
+  mm1 = [
+    ['Viale Malva Nord, 28','',11],
+    ['48015 Cervia (RA)'],
+    ['(+39) 0544 72215','',11],
+    ['(+39) 351 8087232','',11],
+    ['segreteria@eifis.it','',11],
+    ['ordini@eifis.it','',11]
+  ];
+
+  mm2 = [
+    ['Privacy Policy e Cookies','',4],
+    ['Contatti','',3],
+    ['Chi siamo','',1]
+  ];
+  
 
   loginState: string = '';
-  userLogged: boolean = false;
+  isUserLogged: boolean = false;
   userName: string = '';
 
   constructor(
     private videoService: VideoService, 
     private userService: UserService,
-    private router: Router) { }
+    private router: Router ) { }
 
   ngOnInit(): void {
     this.getVideos();
-    //this.dataOggi = (new Date()).toLocaleDateString();
-
-       const mm1 = [
-         ['Viale Malva Nord, 28','',11],
-         ['48015 Cervia (RA)'],
-         ['(+39) 0544 72215','',11],
-         ['(+39) 351 8087232','',11],
-         ['segreteria@eifis.it','',11],
-         ['ordini@eifis.it','',11]
-       ];
-       const mm2 = [
-         ['Privacy Policy e Cookies','',4],
-         ['Contatti','',3],
-         ['Chi siamo','',1]
-       ];
-       
-       const mm5 = [['toggle1','',51],['toggle2','',52],['toggle3','',53]];
-
-       this.menus.push( new MenuGroup("CONTATTI", mm1));
-       this.menus.push( new MenuGroup("SERVIZIO CLIENTI", mm2));
-     
-
-       this.menus2.push( new MenuGroup("Admin", mm5));
-       this.menus2.push( new MenuGroup("Files", mm5));
-
+  
+    this.menus.push( new MenuGroup("CONTATTI", this.mm1));
+    this.menus.push( new MenuGroup("SERVIZIO CLIENTI", this.mm2));
+  
+    //    const mm5 = [['toggle1','',51],['toggle2','',52],['toggle3','',53]];
+    //    this.menus2.push( new MenuGroup("Admin", mm5));
+    //    this.menus2.push( new MenuGroup("Files", mm5));
   }
 
   appoGetVideos(i, n: number): void {
@@ -103,15 +106,12 @@ export class DashboardComponent implements OnInit {
           console.log('finished')
         }
       } 
-
-    });
-    
+    });  
   }
 
   getVideos(): void {
     this.appoGetVideos(1,9);
   }
-
   
   execCmd(cmd: number) {
     console.log("execmd "+cmd);
@@ -128,46 +128,77 @@ export class DashboardComponent implements OnInit {
         this.router.navigate(['/privacy']);
         break;
       }
+      case 5: { // articoli
+        this.router.navigate(['/articoli']);
+        break;
+      }
+
+      case 10: { // goto start
+        this.router.navigate(['#'+this.section_id[0]]);
+        break;
+      }
 
       case 80: {  // video selected
         break;
       }
 
       case 81: { // cannot select video because user not logged
-        this.message = "per visualizzare i video devi prima effetturare il login";
+        this.message = "PER POTER VISUALIZZARE I VIDEO DEVI PRIMA EFFETTUARE IL LOGIN";
         this.messageFormIsActive = true;
         break;
       }
-     
+
+      case 94: {  // recupero password
+        this.loginMode = '3';
+        this.loginFormIsActive = true;
+        this.loginFormTitle = 'Recupero Password';
+        console.log('open login form')
+        break;
+      }
+
+      case 95: {  // open signin form
+        this.loginMode = '2';
+        this.loginFormIsActive = true;
+        this.loginFormTitle = 'Registrazione a energiemagazine.it'
+        console.log('open login form')
+        break;
+      }
+
       case 96: {  // close message form
         this.messageFormIsActive = false;
         break;
       }
-      case 99: {  // open login form
-        this.loginFormIsActive = true;
+      case 97: {  // logout
+        this.userService.logout();
+        this.isUserLogged = this.userService.isUserLogged;
+        this.userName = this.userService.userName();
         break;
       }
+    
       case 98: {  // close login form
         this.loginFormIsActive = false;
-        console.log(this.loginFormIsActive);
-        if (this.userService.data2.user_id) {
-          this.loginState = this.userService.data2.notice;
-          this.userName = this.userService.data1.email;
-        //  this.showLogin = true;
-          this.userLogged = true;
 
-          this.message = "utente collegato";
-          this.messageFormIsActive = true;
-        } else {
-          this.message = "credenziali errate";
-          this.messageFormIsActive = true;
+        if (this.loginMode == '1') {
+          this.isUserLogged = this.userService.isUserLogged;
+          this.userName = this.userService.userName();
+  
+          if (!this.userService.isUserLogged) {
+            this.message = "CREDENZIALI ERRATE";
+            this.messageFormIsActive = true;
+          } else {
+            this.message = "CIAK! ORA SEI COLLEGATO";
+            this.messageFormIsActive = true;
+          }
         }
         break;     
-      }     
+      } 
+      case 99: {  // open login form
+        this.loginFormTitle = 'AREA RISERVATA';
+        this.loginMode = '1';
+        this.loginFormIsActive = true;
+        console.log('open login form')
+        break;
+      }    
     }
   }
-
-  
-//  @Output() onVideoSelected: EventEmitter<Video>;
-
 }
