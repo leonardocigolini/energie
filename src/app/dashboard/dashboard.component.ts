@@ -30,7 +30,6 @@ export class DashboardComponent implements OnInit {
     "Dirette Social",
     "Webinar Gratuiti",
     "EmpowerME",
-    "Articoli",
     "Book Trailers",
     "Video Autori",
     "PHYL"
@@ -42,11 +41,14 @@ export class DashboardComponent implements OnInit {
     "VidSocials",
     "VidWebinars",
     "VidEmpowerMe",
-    "VidArticles",
     "VidBookTrailers",
     "VidAuthors",
     "VidPHYL"
   ];
+
+  items_code : number[] = [
+    1,2,3,4,5,7,8,9
+  ]
 
   // menu
   menus : MenuGroup[] = [];
@@ -89,7 +91,7 @@ export class DashboardComponent implements OnInit {
   }
 
   appoGetVideos(i, n: number): void {
-    this.videoService.getVideos(i).subscribe({
+    this.videoService.getVideos(this.items_code[i]).subscribe({
       next: videos => { 
         //console.log(videos);
         this.avideos.push( new Array);
@@ -110,7 +112,7 @@ export class DashboardComponent implements OnInit {
   }
 
   getVideos(): void {
-    this.appoGetVideos(1,9);
+    this.appoGetVideos(1,8);
   }
   
   execCmd(cmd: number) {

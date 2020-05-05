@@ -19,7 +19,6 @@ export class VideoListComponent implements OnInit {
     this.doCmd = new EventEmitter();
   }
 
-
   ngOnInit(): void {
   }
 

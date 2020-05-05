@@ -10,8 +10,6 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { PageModule } from './page/page.module';
-//import { MenuModule } from './menu/menu.module';
-import { UserService } from './user/user.service';
 import { SharedModule } from './shared/shared.module';
 import { ArticleModule } from './article/article.module';
 import { GpFormModule } from './gp-form/gp-form.module';
@@ -28,7 +26,6 @@ import { VideoModule } from './video/video.module';
     HttpClientModule,
     FormsModule,
     PageModule,
-   // MenuModule,
     SharedModule,
     GpFormModule,
     ArticleModule,
@@ -36,7 +33,6 @@ import { VideoModule } from './video/video.module';
     EmbedVideo.forRoot()
   ],
   providers: [ 
-    UserService,
     { provide: 'HOME_URL', useValue: 'http://eifis.it'}
   ],
   bootstrap: [AppComponent]
