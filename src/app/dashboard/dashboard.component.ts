@@ -91,7 +91,7 @@ export class DashboardComponent implements OnInit {
   }
 
   appoGetVideos(i, n: number): void {
-    this.videoService.getVideos(this.items_code[i]).subscribe({
+    this.videoService.getVideos(this.items_code[i-1]).subscribe({
       next: videos => { 
         //console.log(videos);
         this.avideos.push( new Array);

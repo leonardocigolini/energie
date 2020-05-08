@@ -5,23 +5,39 @@
 [user_name]="userName" 
 [section_ids]="section_id" 
 (doCmd)="execCmd($event)"></app-top-bar>
+
+<section *ngIf="current_article" class="section" id="article-view">
+    <div class="container">
+        <app-article-item [article]="current_article"></app-article-item>
+    </div>
+</section>
+
 <section class="section">
     <div class="container">
-        <div *ngFor="let article of articles" class="card">       
-            <div class="card-image">
-                <figure class="image">
+        <div class="columns" *ngFor="let article of articles">
+            <div class="column is-one-third">
+                <p class="image">
                     <img src="{{article.pic_url}}" width="640" heigth="auto" alt="immagine">
-                </figure>
+                </p>
             </div>
-            <div class="card-content">
-                <div class="content">
-                    <p class="title is-4">{{article.title}}</p>
-                    <div [innerHTML]="article.text">
-
-                    </div>
-                   
-                </div>
+            <div class="column">
+                <p class="title is-4">{{article.title}}</p>
+                <div class="bottom-margin" [innerHTML]="article.subtitle"></div> 
+                <button (click)= "setCurrent(article)" class="button is-small is-danger is-rounded">Leggi</button>
             </div>
         </div>
+        <!-- <article *ngFor="let article of articles" class="media">       
+            <figure class="media-left">
+                    <p class="image is-128x128">
+                        <img src="{{article.pic_url}}" width="640" heigth="auto" alt="immagine">
+                    </p>
+            </figure>
+            <div class="media-content">
+                <div class="content">
+                    <p class="title is-4">{{article.title}}</p>
+                    <div [innerHTML]="article.text"></div>  
+                </div>
+            </div>
+        </article> -->
     </div>
 </section>
