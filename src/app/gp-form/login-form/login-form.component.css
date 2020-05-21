@@ -1,0 +1,28 @@
+h1,h2 {
+    color: #ea0082;
+    font-size: larger;
+    font-weight: bold;
+}
+
+a,label {
+    color: grey;
+}
+
+
+
+button {
+    background-color:#ea0082 !important;
+    font-weight: bold;
+}
+
+div.xx {
+    
+    padding-top: 112px;
+    
+    border-left: 1px solid gray;
+   /*
+    display: inline-block;
+    height: 100%;
+    vertical-align: bottom;
+    */
+}

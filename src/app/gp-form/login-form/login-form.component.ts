@@ -25,10 +25,10 @@ export class LoginFormComponent implements OnInit {
     this.doCmd = new EventEmitter();
   }
 
-  closeForm() {
+  closeForm(cmd: number = 78) {
     console.log('closeform');
     this.notice = '';
-    this.doCmd.emit(98);
+    this.doCmd.emit(cmd);
   }
 
   doLogin(form: any) : void {

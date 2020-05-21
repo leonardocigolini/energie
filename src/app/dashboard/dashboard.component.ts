@@ -176,8 +176,20 @@ export class DashboardComponent implements OnInit {
         this.userName = this.userService.userName();
         break;
       }
+
+      case 76: { // close login and oper again to request forgotten pw }
+        this.loginFormIsActive = false;
+        this.execCmd(94);
+        break;
+      }
     
-      case 98: {  // close login form
+      case 77: { // close login and oper again to register }
+        this.loginFormIsActive = false;
+        this.execCmd(95);
+        break;
+      }
+
+      case 78: {  // close login form
         this.loginFormIsActive = false;
 
         if (this.loginMode == '1') {
@@ -195,7 +207,7 @@ export class DashboardComponent implements OnInit {
         break;     
       } 
       case 99: {  // open login form
-        this.loginFormTitle = 'AREA RISERVATA';
+        this.loginFormTitle = 'Area Riservata';
         this.loginMode = '1';
         this.loginFormIsActive = true;
         console.log('open login form')
