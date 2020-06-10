@@ -14,11 +14,13 @@ import { SharedModule } from './shared/shared.module';
 import { ArticleModule } from './article/article.module';
 import { GpFormModule } from './gp-form/gp-form.module';
 import { VideoModule } from './video/video.module';
+import { StartMsgComponent } from './dashboard/start-msg/start-msg.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent 
+    DashboardComponent,
+    StartMsgComponent 
   ],
   imports: [
     BrowserModule,

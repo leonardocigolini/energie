@@ -1,4 +1,9 @@
-<a href="#VidInterviews"><h1 class="title">{{title}}</h1></a>
+<a href="#VidInterviews">
+<h1 class="title">
+    <span>{{title}}</span>
+</h1>
+<hr />
+</a>
 <div class="columns is-1 is-multiline">
     <div class="column is-one-quarter" *ngFor="let video of videos" >
         <app-video-item 
@@ -8,4 +13,3 @@
         </app-video-item>
     </div>  
 </div>
-<hr />

@@ -1,0 +1,12 @@
+<div class="modal is-active">
+    <div class="modal-background" (click)="doCmd.emit(50)"></div>
+    <div class="modal-content">
+        <div class="box has-padding">
+            <app-video-item 
+                [video]=video
+                [isSelected]="true">
+            </app-video-item>
+          </div>
+    </div>
+    <button class="modal-close is-large" aria-label="close" (click)="doCmd.emit(50)"></button>
+</div>

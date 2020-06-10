@@ -1,3 +1,8 @@
 div.bottom-margin {
     margin-bottom: 10px;
 }
+
+button {
+    background-color:#ea0082 !important;
+    font-weight: bold;
+}

@@ -74,6 +74,13 @@ export class UserService {
     this.getUser(user, '', '2', done)
   }
 
+  userRecoverPassword(user: string, done: CallbackFunction) : void {
+    console.log('user recover password '+user);
+    this.data1 = { email: user, password: ''};
+    this.getUser(user, '', '3', done)
+  }
+  
+
   getUser(email : string, password : string, mode: string, done : CallbackFunction) : void {
 
     const pars: HttpParams = new HttpParams().set('m', mode).set('n', email).set('p',password);

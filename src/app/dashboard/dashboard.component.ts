@@ -14,8 +14,9 @@ import { UserService } from '../user/user.service';
 export class DashboardComponent implements OnInit {
 
   // login form
-  loginFormIsActive: boolean = false;
-  loginMode: string = '';
+//  loginFormIsActive: boolean = false;
+  startMsgIsActive: boolean = false;
+  loginMode: number = 0;
   loginFormTitle: string = '';
   messageFormIsActive: boolean = false;
   message : string;
@@ -23,6 +24,7 @@ export class DashboardComponent implements OnInit {
   topBarMode = 'video';
 
   // video
+  startVideo : Video = null;
   avideos : Video[][] = [];
   titles : string[] = [
     "Interviste",
@@ -70,7 +72,7 @@ export class DashboardComponent implements OnInit {
   ];
   
 
-  loginState: string = '';
+ // loginState: string = '';
   isUserLogged: boolean = false;
   userName: string = '';
 
@@ -80,6 +82,11 @@ export class DashboardComponent implements OnInit {
     private router: Router ) { }
 
   ngOnInit(): void {
+
+    console.log('ngOnInit');
+    this.isUserLogged = this.userService.isUserLogged;
+    this.userName = this.userService.userName();
+
     this.getVideos();
   
     this.menus.push( new MenuGroup("CONTATTI", this.mm1));
@@ -88,6 +95,8 @@ export class DashboardComponent implements OnInit {
     //    const mm5 = [['toggle1','',51],['toggle2','',52],['toggle3','',53]];
     //    this.menus2.push( new MenuGroup("Admin", mm5));
     //    this.menus2.push( new MenuGroup("Files", mm5));
+
+    this.startMsgIsActive = true;
   }
 
   appoGetVideos(i, n: number): void {
@@ -98,6 +107,11 @@ export class DashboardComponent implements OnInit {
         videos.forEach( (video) => {  
          this.avideos[i-1].push( new Video(video.title, '', video.description, '', video.link));
         });
+
+        if (this.startVideo == null) {
+          this.startVideo = this.avideos[i-1][0];
+        }
+
         console.log('video loaded '+this.avideos[i-1].length);
       },
       complete: () => { 
@@ -140,9 +154,15 @@ export class DashboardComponent implements OnInit {
         break;
       }
 
+      case 50: { // close startMsg 
+        this.startMsgIsActive = false;
+        break;
+      }
+
       case 80: {  // video selected
         break;
       }
+
 
       case 81: { // cannot select video because user not logged
         this.message = "PER POTER VISUALIZZARE I VIDEO DEVI PRIMA EFFETTUARE IL LOGIN";
@@ -151,16 +171,16 @@ export class DashboardComponent implements OnInit {
       }
 
       case 94: {  // recupero password
-        this.loginMode = '3';
-        this.loginFormIsActive = true;
+        this.loginMode = 3;
+    //    this.loginFormIsActive = true;
         this.loginFormTitle = 'Recupero Password';
         console.log('open login form')
         break;
       }
 
       case 95: {  // open signin form
-        this.loginMode = '2';
-        this.loginFormIsActive = true;
+        this.loginMode = 2;
+     //   this.loginFormIsActive = true;
         this.loginFormTitle = 'Registrazione a energiemagazine.it'
         console.log('open login form')
         break;
@@ -178,21 +198,23 @@ export class DashboardComponent implements OnInit {
       }
 
       case 76: { // close login and oper again to request forgotten pw }
-        this.loginFormIsActive = false;
+        this.loginMode=0;
+   //     this.loginFormIsActive = false;
         this.execCmd(94);
         break;
       }
     
       case 77: { // close login and oper again to register }
-        this.loginFormIsActive = false;
+        this.loginMode=0;
+
+     //   this.loginFormIsActive = false;
         this.execCmd(95);
         break;
       }
 
       case 78: {  // close login form
-        this.loginFormIsActive = false;
 
-        if (this.loginMode == '1') {
+        if (this.loginMode == 1) {
           this.isUserLogged = this.userService.isUserLogged;
           this.userName = this.userService.userName();
   
@@ -204,12 +226,15 @@ export class DashboardComponent implements OnInit {
             this.messageFormIsActive = true;
           }
         }
+     //   this.loginFormIsActive = false;
+        this.loginMode = 0;
+
         break;     
       } 
       case 99: {  // open login form
         this.loginFormTitle = 'Area Riservata';
-        this.loginMode = '1';
-        this.loginFormIsActive = true;
+        this.loginMode = 1;
+     //   this.loginFormIsActive = true;
         console.log('open login form')
         break;
       }    

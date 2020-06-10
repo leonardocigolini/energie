@@ -1,11 +1,13 @@
-<div class="modal" [class.is-active]="isActive">
+<div class="modal" [class.is-active]="mode>0">
     <div class="modal-background" (click)="closeForm()"></div>
     <div class="modal-content">
         <div class="box">
            
             <div class="columns">
-                <div class="column is-two-thirds">
-                    <h1>{{title}}</h1>
+                <div class="column" [class.is-two-thirds]="mode==1">
+                    <h1>{{titles[mode]}}</h1>
+                    <p>{{descriptions[mode]}}</p>
+
                     <form #f="ngForm" (ngSubmit)="onSubmit(f.value)">
                         <p *ngIf="notice != ''">{{notice}}</p>
 
@@ -14,12 +16,12 @@
                                 <input id="userInput" class="input" type="text" placeholder="digitare email" name="user" ngModel />
                             </div>
                         </div>
-                        <div *ngIf="mode=='1'" class="field">
+                        <div *ngIf="mode==1" class="field">
                             <div class="control">
                                 <input id="pwdInput" class="input" type="text" placeholder="digitare password" name="password" ngModel />
                             </div>
                         </div>
-                        <div *ngIf="mode=='1'" class="field is-grouped">
+                        <div *ngIf="mode==1" class="field is-grouped">
                             <div class="control">
                             <button type="submit" class="button is-danger">Accedi</button>
                             </div>
@@ -27,21 +29,19 @@
                                 <a class="is-size-7" (click)="closeForm(76); false">Password dimenticata?</a>
                             </div>
                         </div>
-                        <div *ngIf="mode=='2'" class="field is-grouped">
-                            <p>Inserisci il tuo indirizzo mail, ti invierremo immediatamente un link per confermare la tua iscrizione. Controlla subito la tua casella mail!</p>
+                        <div *ngIf="mode==2" class="field is-grouped">
                             <div class="control">
                                 <button type="submit" class="button is-danger">Registrati</button>
                             </div>
                         </div>
-                        <div *ngIf="mode=='3'" class="field is-grouped">
+                        <div *ngIf="mode==3" class="field is-grouped">
                             <div class="control">
-                                <p>Inserisci il tuo indirizzo mail, ti invierremo immediatamente un link attraverso il quale potrai resettare la password e impostarne una nuova.</p>
                                 <button type="submit" class="button is-danger">Recupera</button>
                             </div>
                         </div>
                     </form>
                 </div>
-                <div *ngIf="mode=='1'"  class="column xx">
+                <div *ngIf="mode==1"  class="column xx">
                     
                     <label for="btn1" class="label">Non hai un account?</label>
                     <div class="control">
