@@ -128,7 +128,7 @@ export class DashboardComponent implements OnInit {
   }
 
   getVideos(): void {
-    this.appoGetVideos(1,8);
+    this.appoGetVideos(1,9);
   }
   
   execCmd(cmd: number) {
