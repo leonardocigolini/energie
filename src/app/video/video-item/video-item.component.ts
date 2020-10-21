@@ -20,7 +20,10 @@ export class VideoItemComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.loadPicture(); 
+    if (this.isSelected)
+        this.loadVideo()
+      else
+        this.loadPicture();
   }
 
   ngOnChanges() {

@@ -6,7 +6,7 @@
 [section_ids]="section_id" 
 (doCmd)="execCmd($event)"></app-top-bar>
 
-<app-start-msg *ngIf="startMsgIsActive"  [video]="startVideo" (doCmd)="execCmd($event)" ></app-start-msg>
+<app-start-msg *ngIf="startMsgIsActive" (doCmd)="execCmd($event)" ></app-start-msg>
 <app-login-form  [mode]="loginMode" (doCmd)="execCmd($event)"></app-login-form>
 
 <app-message-form [isActive]="messageFormIsActive" [message]="message" (doCmd)="execCmd($event)"></app-message-form>

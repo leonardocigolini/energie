@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { Video } from '../../video/video';
+import { env } from 'process';
+import { environment } from 'src/environments/environment.prod';
 
 
 @Component({
@@ -9,13 +11,15 @@ import { Video } from '../../video/video';
 })
 export class StartMsgComponent implements OnInit {
 
-  @Input() video: Video;
+  video: Video;
+
   @Output() doCmd: EventEmitter<number>;
 
   constructor() {  this.doCmd = new EventEmitter(); }
  
 
   ngOnInit(): void {
+    this.video = new Video('', '', '', '', environment.startVideoUrl);
   }
 
 }

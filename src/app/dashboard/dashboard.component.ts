@@ -24,7 +24,7 @@ export class DashboardComponent implements OnInit {
   topBarMode = 'video';
 
   // video
-  startVideo : Video = null;
+  //startVideo : Video = null;
   avideos : Video[][] = [];
   titles : string[] = [
     "Interviste",
@@ -34,7 +34,8 @@ export class DashboardComponent implements OnInit {
     "EmpowerME",
     "Book Trailers",
     "Video Autori",
-    "PHYL"
+    "PHYL",
+    "Live Meditations"
   ];
 
   section_id : string[] = [
@@ -45,11 +46,12 @@ export class DashboardComponent implements OnInit {
     "VidEmpowerMe",
     "VidBookTrailers",
     "VidAuthors",
-    "VidPHYL"
+    "VidPHYL",
+    "VidLiveMed"
   ];
 
   items_code : number[] = [
-    1,2,3,4,5,7,8,9
+    1,2,3,4,5,7,8,9,10
   ]
 
   // menu
@@ -108,9 +110,9 @@ export class DashboardComponent implements OnInit {
          this.avideos[i-1].push( new Video(video.title, '', video.description, '', video.link));
         });
 
-        if (this.startVideo == null) {
-          this.startVideo = this.avideos[i-1][0];
-        }
+      //  if (this.startVideo == null) {
+      //    this.startVideo = this.avideos[i-1][0];
+      //  }
 
         console.log('video loaded '+this.avideos[i-1].length);
       },
