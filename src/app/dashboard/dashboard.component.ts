@@ -27,31 +27,44 @@ export class DashboardComponent implements OnInit {
   //startVideo : Video = null;
   avideos : Video[][] = [];
   titles : string[] = [
+    // "Interviste",
+    // "Presentazione Libri",
+    // "Dirette Social",
+    // "Webinar Gratuiti",
+    // "EmpowerME",
+    // "Book Trailers",
+    // "Video Autori",
+    // "PHYL",
+    // "Live Meditations"
+
+    "Webinar",
     "Interviste",
-    "Presentazione Libri",
+    "Meditazioni Live",
+    "PHYL",
+    "Presentazioni Live",
     "Dirette Social",
-    "Webinar Gratuiti",
-    "EmpowerME",
     "Book Trailers",
     "Video Autori",
-    "PHYL",
-    "Live Meditations"
+    "EmpowerME"
+   
+    
   ];
 
   section_id : string[] = [
+    "VidWebinars",
     "VidInterviews",
+    "VidLiveMed",
+    "VidPHYL",
     "VidBooks",
     "VidSocials",
-    "VidWebinars",
-    "VidEmpowerMe",
     "VidBookTrailers",
     "VidAuthors",
-    "VidPHYL",
-    "VidLiveMed"
+    "VidEmpowerMe"
   ];
 
   items_code : number[] = [
-    1,2,3,4,5,7,8,9,10
+  //  1,2,3,4,5,7,8,9,10
+    4,1,10,9,2,3,7,8,5
   ]
 
   // menu
